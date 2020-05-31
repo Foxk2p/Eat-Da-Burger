@@ -1,0 +1,26 @@
+{
+  "name": "Eat-Da-Burger",
+  "version": "1.0.0",
+  "description": "This is a burger logger following the MVC design pattern. This app will store every burger in a database, whether you devoured it or not.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Foxk2p/Eat-Da-Burger-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Foxk2p/Eat-Da-Burger-/issues"
+  },
+  "homepage": "https://github.com/Foxk2p/Eat-Da-Burger-#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "mysql2": "^2.1.0"
+  }
+}

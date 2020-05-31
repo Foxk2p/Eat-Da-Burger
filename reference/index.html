@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List Application</title>
+</head>
+<body>
+  <h1>To-Do List Application</h1>
+
+  <form>
+    <p>
+      <label for="item">Item:</label>
+      <input type="text" name="item" id="item">
+    </p>
+    <button id="addItem">Add Item</button>
+  </form>
+
+  <ul id="items"></ul>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+
+    document.getElementById('addItem').addEventListener('click', event => {
+      event.preventDefault()
+      axios.post('/items', {
+        text: document.getElementById('item').value,
+        isDone: false
+      })
+        .then(() => {
+          getItems()
+          document.getElementById('item').value = ''
+        })
+        .catch(err => console.error(err))
+    })
+
+    const updateItem = text => {
+      axios.put(`/items/${text}`)
+        .then(() => getItems())
+        .catch(err => console.error(err))
+    }
+
+    const deleteItem = text => {
+      axios.delete(`/items/${text}`)
+        .then(() => getItems())
+        .catch(err => console.error(err))
+    }
+
+    document.addEventListener('click', event => {
+      switch (event.target.className) {
+        case 'updateItem':
+          updateItem(event.target.dataset.item)
+          break
+        case 'deleteItem':
+          deleteItem(event.target.dataset.item)
+          break
+      }
+    })
+
+    const getItems = () => {
+    axios.get('/items')
+      .then(({ data }) => {
+        document.getElementById('items').innerHTML = ''
+        data.forEach(item => {
+          let itemElem = document.createElement('li')
+          itemElem.innerHTML = `
+            <span style="color: ${item.isDone ? 'green' : 'black'}">${item.text}</span>
+            <button class="updateItem" data-item="${item.text}">✓</button>
+            <button class="deleteItem" data-item="${item.text}">X</button>
+          `
+          document.getElementById('items').append(itemElem)
+        })
+      })
+      .catch(err => console.error(err))
+    }
+
+    getItems()
+
+  </script>
+</body>
+</html>
