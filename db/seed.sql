@@ -2,11 +2,13 @@ USE burgers_db;
 
 INSERT INTO burgers (burger_name, devoured)
 VALUES
-('Big Kahuna', FALSE),
-('Da Stack', TRUE),
-('Ranch Hand', TRUE),
-('Melt', FALSE);
+('Big Kahuna', false),
+('Da Stack', true),
+('Ranch Hand', true),
+('Melt', false);
 
+
+-- Favoriteapp reference-------------------------------------------
 
 -- USE favorite_db;
 

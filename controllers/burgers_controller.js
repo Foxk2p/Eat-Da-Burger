@@ -2,55 +2,40 @@ const router = require('express').Router()
 // burger path
 const { Burger } = require('../models')
 
-// GET all movies
-router.get('/movies', (req, res) => Movie
-  .getMovies(movies => res.json(movies)))
-
-// GET one movie
-router.get('/movies/:id', (req, res) => Movie
-  .getMoviesWhere({ id: req.params.id }, movie => res.json(movie)))
-
-// POST one movie
-router.post('/movies', (req, res) => Movie
-  .addMovie(req.body, info => res.json(info)))
-
-// PUT one movie
-router.put('/movies/:id', (req, res) => Movie
-  .updateMovie(req.body, { id: req.params.id }, info => res.json(info)))
-
-// DELETE one movie
-router.delete('/movies/:id', (req, res) => Movie
-  .deleteMovie({ id: req.params.id }, info => res.json(info)))
-
-module.exports = router
-
-
-// tdr reference
-
 
 // RESTful routing (Representational State Transfer)
 
-// GET all items
-
-router.get('/items', (req, res) => {
-  let items = list.getItems()
-  res.json(items)
+// GET all burgers
+router.get('/burgers', (req, res) => {
+  let burgers = list.getBurgers()
+  res.json(burgers)
 })
 
-// POST an item
-router.post('/items', (req, res) => {
-  list.addItem(req.body)
+// // Get a burger
+// router.get('/burgers/:id', (req, res) => {
+//   let burger = list.getBurger()
+//   res.json(burger)
+// })
+
+// POST a burger
+router.post('/burgers', (req, res) => {
+  list.addBurger(req.body)
   res.sendStatus(200)
 })
 
-// PUT an item
-router.put('/items/:text', (req, res) => {
-  list.updateItem(req.params.text)
+
+// PUT a burger
+router.put('/burgers/:burger_name', (req, res) => {
+  list.updateBurger(req.params.text)
   res.sendStatus(200)
 })
 
-// DELETE an item
-router.delete('/items/:text', (req, res) => {
-  list.deleteItem(req.params.text)
+
+// DELETE a burger
+router.delete('/burgers/:burger_name', (req, res) => {
+  list.deleteBurger(req.params.text)
   res.sendStatus(200)
 })
+
+
+module.exports = router

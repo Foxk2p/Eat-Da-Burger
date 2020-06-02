@@ -1,20 +1,55 @@
-{{!-- <h1>Favorite Burgers</h1>
+
+<h1>The Burgers List</h1>
 
 <form>
   <p>
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title">
+    <label for="burger">Burger</label>
+    <input type="text" name="burger" id="burger">
   </p>
-  <button id="addBurger">Add Movie</button>
+  <button id="addBurger">Add Burger</button>
 </form>
 
 <ol id="burgers">
   {{#each burgers}}
   <li>
-    {{this.title}}
+    {{this.burger}}
     <button class="deleteBurger" data-id="{{this.id}}">X</button>
-    </li>
+  </li>
   {{/each}}
 </ol>
 
-<script src="./burger.js"></script> --}}
+
+{{!-- favoriteapp reference --}}
+{{!-- <h1>The Burgers List</h1>
+
+<form>
+  <p>
+    <label for="item">Item</label>
+    <input type="text" name="item" id="item">
+  </p>
+  <button id="addItem">Add Item</button>
+</form>
+
+<ol id="items">
+  {{#each items}}
+  <li>
+    {{this.item}}
+    <button class="deleteItem" data-id="{{this.id}}">X</button>
+  </li>
+  {{/each}}
+</ol>
+ --}}
+
+{{!-- tdr reference --}}
+{{!-- 
+<h1>To-Do List Application</h1>
+
+<form>
+  <p>
+    <label for="item">Item:</label>
+    <input type="text" name="item" id="item">
+  </p>
+  <button id="addItem">Add Item</button>
+</form>
+
+<ul id="items"></ul> --}}

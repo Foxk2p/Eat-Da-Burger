@@ -1,51 +1,53 @@
 // burger path
 const orm = require('../config/orm.js')
 
+
+// Favoriteapp reference
 module.exports = {
-  getMovies(cb) {
-    orm.getAll('movies', movies => cb(movies))
+  getBurgers(cb) {
+    orm.getAll('burgers', burgers => cb(burgers))
   },
-  getMoviesWhere(where, cb) {
-    orm.getAllWhere('movies', where, movies => cb(movies))
+  getBurgersWhere(where, cb) {
+    orm.getAllWhere('burgers', where, burgers => cb(burgers))
   },
-  addMovie(movie, cb) {
-    orm.createOne('movies', movie, info => cb(info))
+  addBurger(burger, cb) {
+    orm.createOne('burgers', burger, info => cb(info))
   },
-  updateMovie(changes, where, cb) {
-    orm.updateOne('movies', changes, where, info => cb(info))
+  updateBurger(changes, where, cb) {
+    orm.updateOne('burgers', changes, where, info => cb(info))
   },
-  deleteMovie(where, cb) {
-    orm.deleteOne('movies', where, info => cb(info))
+  deleteBurger(where, cb) {
+    orm.deleteOne('burgers', where, info => cb(info))
   }
 }
 
 // tdr reference
 
-class List {
-  constructor() {
-    this.items = []
-    this.getItems = () => this.items
-    this.addItem = item => {
-      this.items.push(item)
-    }
-    this.updateItem = text => {
-      this.items.forEach(item => {
-        if (item.text === text) {
-          item.isDone = !item.isDone
-        }
-      })
-    }
-    this.deleteItem = text => {
-      this.items = this.items.filter(item => {
-        if (item.text === text) {
-          return false
-        } else {
-          return true
-        }
-      })
-    }
-  }
-}
+// class List {
+//   constructor() {
+//     this.items = []
+//     this.getItems = () => this.items
+//     this.addItem = item => {
+//       this.items.push(item)
+//     }
+//     this.updateItem = text => {
+//       this.items.forEach(item => {
+//         if (item.text === text) {
+//           item.isDone = !item.isDone
+//         }
+//       })
+//     }
+//     this.deleteItem = text => {
+//       this.items = this.items.filter(item => {
+//         if (item.text === text) {
+//           return false
+//         } else {
+//           return true
+//         }
+//       })
+//     }
+//   }
+// }
 
 // SongController.js example from favoriteapp
 // note: burger.js syntax based on movieController.js from favoriteapp.
