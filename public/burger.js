@@ -1,25 +1,25 @@
 
 document.getElementById('addBurger').addEventListener('click', event => {
   event.preventDefault()
-  axios.post('/burgers', {
-    text: document.getElementById('burger').value,
+  axios.post('api/burgers', {
+    burger_name: document.getElementById('burger_name').value,
     devoured: false
   })
     .then(() => {
       getBurgers()
-      document.getElementById('burger').value = ''
+      document.getElementById('burger_name').value = ''
     })
     .catch(err => console.error(err))
 })
 
 const updateBurger = burger_name => {
-  axios.put(`/burgers/${burger_name}`)
+  axios.put(`api/burgers/${burger_name}`)
     .then(() => getBurgers())
     .catch(err => console.error(err))
 }
 
 const deleteBurger = burger_name => {
-  axios.delete(`/burgers/${burger_name}`)
+  axios.delete(`api/burgers/${burger_name}`)
     .then(() => getBurgers())
     .catch(err => console.error(err))
 }
@@ -36,7 +36,7 @@ document.addEventListener('click', event => {
 })
 
 const getBurgers = () => {
-  axios.get('/burgers')
+  axios.get('api/burgers')
     .then(({ data }) => {
       document.getElementById('burgers').innerHTML = ''
       data.forEach(burger => {
@@ -54,6 +54,8 @@ const getBurgers = () => {
 
 getBurgers()
 
+
+/
 
 // favoriteapp movie.js for reference
 
@@ -75,6 +77,33 @@ getBurgers()
 // document.addEventListener('click', event => {
 //   if (event.target.className === 'deleteMovie') {
 //     axios.delete(`/api/movies/${event.target.dataset.id}`)
+//       .then(() => {
+//         event.target.parentNode.remove()
+//       })
+//   }
+// })
+
+// favoriteapp song.js for reference
+
+//   document.getElementById('addSong').addEventListener('click', event => {
+//     event.preventDefault()
+//     axios.post('/api/songs', {
+//       title: document.getElementById('title').value,
+//       artist: document.getElementById('artist').value
+//     })
+//       .then(({ data }) => {
+//         let songElem = document.createElement('li')
+//         songElem.innerHTML = `
+//       ${document.getElementById('title').value} by ${document.getElementById('artist').value}
+//       <button class="deleteSong" data-id="${data.insertId}">X</button>
+//       `
+//         document.getElementById('songs').append(songElem)
+//       })
+//   })
+
+// document.addEventListener('click', event => {
+//   if (event.target.className === 'deleteSong') {
+//     axios.delete(`/api/songs/${event.target.dataset.id}`)
 //       .then(() => {
 //         event.target.parentNode.remove()
 //       })

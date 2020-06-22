@@ -1,10 +1,10 @@
 
-<h1>The Burgers List</h1>
+<h1>The Burger List</h1>
 
 <form>
   <p>
-    <label for="burger">Burger</label>
-    <input type="text" name="burger" id="burger">
+    <label for="burger_name">Burger</label>
+    <input type="text" name="burger_name" id="burger_name">
   </p>
   <button id="addBurger">Add Burger</button>
 </form>
@@ -12,12 +12,13 @@
 <ol id="burgers">
   {{#each burgers}}
   <li>
-    {{this.burger}}
+    {{this.burger_name}}
     <button class="deleteBurger" data-id="{{this.id}}">X</button>
   </li>
   {{/each}}
 </ol>
 
+<script src="./burger.js"></script>
 
 {{!-- favoriteapp reference --}}
 {{!-- <h1>The Burgers List</h1>

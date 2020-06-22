@@ -1,18 +1,21 @@
 const router = require('express').Router()
 // burger path. Burger was Originally Movie. Included song model too.
+
 const { Burger } = require('../models')
+// favoriteapp equivalent
+// const { Movie, Song, Game } = require('../controllers')
+
+// router.get('/', (req, res) => {
+//   res.render('burgers')
+// })
+
 
 router.get('/', (req, res) => {
-  res.render('home', {
-    name: 'BURGER'
+  Burger.getBurgers(burgers => {
+    res.render('burgers', { burgers })
   })
 })
 
-// router.get('/movies', (req, res) => {
-//   Movie.getMovies(movies => {
-//     res.render('movies', { movies })
-//   })
-// })
 
 module.exports = router
 
