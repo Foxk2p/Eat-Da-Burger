@@ -1,7 +1,7 @@
 document.getElementById('addBurger').addEventListener('click', event => {
   event.preventDefault()
   axios.post('/api/burgers', {
-    title: document.getElementById('burger_name').value
+    burger_name: document.getElementById('burger_name').value
   })
     .then(({ data }) => {
       let burgerElem = document.createElement('li')
