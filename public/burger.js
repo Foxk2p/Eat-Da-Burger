@@ -54,9 +54,6 @@ const getBurgers = () => {
 
 getBurgers()
 
-
-/
-
 // favoriteapp movie.js for reference
 
 // document.getElementById('addMovie').addEventListener('click', event => {
