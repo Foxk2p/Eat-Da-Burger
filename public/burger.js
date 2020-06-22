@@ -1,58 +1,82 @@
-
 document.getElementById('addBurger').addEventListener('click', event => {
   event.preventDefault()
-  axios.post('api/burgers', {
-    burger_name: document.getElementById('burger_name').value,
-    devoured: false
+  axios.post('/api/burgers', {
+    title: document.getElementById('burger_name').value
   })
-    .then(() => {
-      getBurgers()
-      document.getElementById('burger_name').value = ''
+    .then(({ data }) => {
+      let burgerElem = document.createElement('li')
+      burgerElem.innerHTML = `
+        ${document.getElementById('burger_name').value}
+        <button class="deleteBurger" data-id="${data.insertId}">X</button>
+      `
+      document.getElementById('burgers').append(burgerElem)
     })
-    .catch(err => console.error(err))
 })
 
-const updateBurger = burger_name => {
-  axios.put(`api/burgers/${burger_name}`)
-    .then(() => getBurgers())
-    .catch(err => console.error(err))
-}
-
-const deleteBurger = burger_name => {
-  axios.delete(`api/burgers/${burger_name}`)
-    .then(() => getBurgers())
-    .catch(err => console.error(err))
-}
-
 document.addEventListener('click', event => {
-  switch (event.target.className) {
-    case 'updateBurger':
-      updateBurger(event.target.dataset.burger)
-      break
-    case 'deleteBurger':
-      deleteBurger(event.target.dataset.burger)
-      break
+  if (event.target.className === 'deleteBurger') {
+    axios.delete(`/api/burgers/${event.target.dataset.id}`)
+      .then(() => {
+        event.target.parentNode.remove()
+      })
   }
 })
 
-const getBurgers = () => {
-  axios.get('api/burgers')
-    .then(({ data }) => {
-      document.getElementById('burgers').innerHTML = ''
-      data.forEach(burger => {
-        let itemElem = document.createElement('li')
-        itemElem.innerHTML = `
-            <span style="color: ${burger.devoured ? 'green' : 'black'}">${burger.burger_name}</span>
-            <button class="updateBurger" data-item="${burger.burger_name}">✓</button>
-            <button class="deleteBurger" data-item="${burger.burger_name}">X</button>
-          `
-        document.getElementById('burgers').append(burgerElem)
-      })
-    })
-    .catch(err => console.error(err))
-}
+//  attempt to turn todoapprepo js into burger.js js
+// document.getElementById('addBurger').addEventListener('click', event => {
+//   event.preventDefault()
+//   axios.post('api/burgers', {
+//     burger_name: document.getElementById('burger_name').value,
+//     devoured: false
+//   })
+//     .then(() => {
+//       getBurgers()
+//       document.getElementById('burger_name').value = ''
+//     })
+//     .catch(err => console.error(err))
+// })
 
-getBurgers()
+// const updateBurger = burger_name => {
+//   axios.put(`api/burgers/${burger_name}`)
+//     .then(() => getBurgers())
+//     .catch(err => console.error(err))
+// }
+
+// const deleteBurger = burger_name => {
+//   axios.delete(`api/burgers/${burger_name}`)
+//     .then(() => getBurgers())
+//     .catch(err => console.error(err))
+// }
+
+// document.addEventListener('click', event => {
+//   switch (event.target.className) {
+//     case 'updateBurger':
+//       updateBurger(event.target.dataset.burger)
+//       break
+//     case 'deleteBurger':
+//       deleteBurger(event.target.dataset.burger)
+//       break
+//   }
+// })
+
+// const getBurgers = () => {
+//   axios.get('api/burgers')
+//     .then(({ data }) => {
+//       document.getElementById('burgers').innerHTML = ''
+//       data.forEach(burger => {
+//         let itemElem = document.createElement('li')
+//         itemElem.innerHTML = `
+//             <span style="color: ${burger.devoured ? 'green' : 'black'}">${burger.burger_name}</span>
+//             <button class="updateBurger" data-item="${burger.burger_name}">✓</button>
+//             <button class="deleteBurger" data-item="${burger.burger_name}">X</button>
+//           `
+//         document.getElementById('burgers').append(burgerElem)
+//       })
+//     })
+//     .catch(err => console.error(err))
+// }
+
+// getBurgers()
 
 // favoriteapp movie.js for reference
 
