@@ -13,7 +13,7 @@ app.engine('.hbs', require('express-handlebars')({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 
 // burger path
-app.use(require('./routes'))
+app.use(require('./controllers'))
 
 
 app.listen(process.env.PORT || 3000, () => console.log('http://localhost:3000'))
