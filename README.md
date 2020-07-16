@@ -9,7 +9,7 @@ app will store every burger in a database
 
 FEATURES:
 
-MySQL persistnat data
+MySQL persistant data
 
 Handlebars generated HTML,
 
